@@ -37,10 +37,14 @@
 <body>
     <div class="form-container">
         <form id="multiplyForm">
-            <label for="num1">Angka Pertama:</label>
+            <label for="num1">Tempat Parkir Tersedia:</label>
             <input type="number" id="num1" name="num1" required>
-            <label for="num2">Angka Kedua:</label>
+            <label for="num2">Kedatangan Pelanggan Per Jam:</label>
             <input type="number" id="num2" name="num2" required>
+            <label for="num3">Tingkat Pelayanan Per Jam:</label>
+            <input type="number" id="num3" name="num2" required>
+            <label for="num4">Jumlah probabilitas dalam sistem:</label>
+            <input type="number" id="num4" name="num4" required>
             <button type="button" onclick="multiply()">Perkalian</button>
             <p id="result"></p>
         </form>
@@ -51,12 +55,73 @@
             // Mendapatkan nilai dari input field
             const num1 = parseFloat(document.getElementById('num1').value);
             const num2 = parseFloat(document.getElementById('num2').value);
+            const num3 = parseFloat(document.getElementById('num3').value);
+            const num4 = parseFloat(document.getElementById('num4').value);
 
             // Melakukan operasi perkalian
-            const result = num1 * num2;
+            const result = (num2 / num3) ** 2;
+            const hasil = result.toFixed(4);
+            const re = num2 / num3;
 
-            // Menampilkan hasilnya
-            document.getElementById('result').innerText = `Hasil perkalian: ${result}`;
+            const pangkat1 = num1-1;
+            const result1 = re**pangkat1;
+            const hasil1 = num1*result1;
+            const h1 = hasil1.toFixed(4);
+
+            const result2 = re**num1;
+            const hasil2 = result2*pangkat1;
+            const h2 = hasil2.toFixed(4);
+
+            const result3 = (1-re)*(1-(re**num1));
+            const h3 = result3.toFixed(4);
+
+            const pr = 1-h1;
+            const HasilA = pr.toFixed(4); 
+
+            const atas = Number(pr) + Number(h2);
+            const HasilAtas = atas.toFixed(4);
+
+            const HasilPoinA = Number(HasilAtas)/Number(h3);
+            const HPA = HasilPoinA.toFixed(4);
+
+            const JumlahPointA = Number(HPA)*Number(hasil);
+            const JPA = JumlahPointA.toFixed(4);
+
+            // Perhitungan B
+            const pertama = num2/num3;
+            const RPertama = pertama.toFixed(4);
+
+            const kedua = (num1+1)*(Number(RPertama)**num1);
+            const Rkedua = kedua.toFixed(4);
+
+            const ketiga = num1*(Number(RPertama)**(num1+1));
+            const Rketiga = ketiga.toFixed(4);
+
+            const keempat = (1-Number(RPertama))*(1-(Number(RPertama)**(num1+1)))
+            const Rkeempat = keempat.toFixed(4);
+
+            const hasilB = ((1-Number(Rkedua)+Number(Rketiga))/Number(Rkeempat))*Number(RPertama);
+            const RhasilB = hasilB.toFixed(4);
+
+            // Pehitungan C
+            const Cpertama = 1-(num2/num3);
+            const RBPertama = Cpertama.toFixed(4);
+
+            const Ckedua = (num2/num3)**num4;
+            const RBKedua = Ckedua.toFixed(4);
+
+            const Cketiga = 1-((num2/num3)**(num1+1));
+            const RBKetiga = Cketiga.toFixed(4);
+
+            // const hasilC = (Number(RBPertama)/Number(RBKetiga))*Number(RBKedua);
+            const Ckeempat = Number(RBPertama)/Number(RBKetiga);
+            const RBKeempat = Ckeempat.toFixed(4);
+
+            const Ckelima = Number(RBKeempat)*Number(RBKedua);
+            const RBKelima = Ckelima.toFixed(5);
+
+                // Menampilkan hasilnya
+                document.getElementById('result').innerText = `Jumlah individu rata-rata dalam antrian: ${JPA}\n\n Jumlah individu rata-rata dalam sistem: ${RhasilB}\n\n Probabilitas jumlah n individu dalam sistem: ${RBKelima}`; 
         }
     </script>
 </body>
